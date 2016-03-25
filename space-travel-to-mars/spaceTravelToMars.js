@@ -2,7 +2,7 @@
 //require assert
 var assert = require('assert');
 
-var jobAbilities = {
+var jobTypes = {
   pilot: 'MAV',
   mechanic: 'Repair Ship',
   commander: 'Main Ship',
@@ -26,7 +26,33 @@ function Ship(name, type, ability) {
   this.type = type;
   this.ability = ability;
   this.crew = [];
+
+  this.missionStatement = function(){
+    var statement = "Can't perform a mission yet.";
+    var neededJob = '';
+
+    for (var job in jobTypes) {
+      if(jobTypes[job] === this.type){
+        neededJob = job;
+      }
+    }
+
+    var that = this;
+    this.crew.forEach(function(member){
+      if (member.job === neededJob){
+        statement = that.ability;
+      }
+    });
+
+    return statement;
+
+  }
 }
+
+// var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+// var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+// crewMember1.enterShip(mav);
+// mav.missionStatement();
 
 // var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
 // var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
@@ -36,9 +62,6 @@ function Ship(name, type, ability) {
 // console.log(mav.crew);
 // console.log(crewMember1.ship === mav);
 // console.log(mav.crew.indexOf(crewMember1) === 0);
-
-//your code here
-
 
 
 //tests
@@ -68,5 +91,20 @@ describe('Ship', function(){
     assert.equal(mav.type, 'MAV');
     assert.equal(mav.ability, 'Ascend into low orbit');
     assert.equal(mav.crew.length, 0);
+  })
+
+  it('can console log out a mission statement correctly', function(){
+    var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+    var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
+    var hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
+    var crewMember2 = new CrewMember('Commander Lewis', 'commander', 'geology');
+    assert.equal(mav.missionStatement(), "Can't perform a mission yet.");
+    assert.equal(hermes.missionStatement(), "Can't perform a mission yet.");
+
+    crewMember1.enterShip(mav);
+    assert.equal(mav.missionStatement(), "Ascend into low orbit");
+
+    crewMember2.enterShip(hermes);
+    assert.equal(hermes.missionStatement(), "Interplanetary Space Travel");
   })
 })

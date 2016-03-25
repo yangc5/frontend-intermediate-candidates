@@ -59,14 +59,14 @@ console.log(mav.crew.indexOf(crewMember1) === 0); //true
 ```
 
 ## Spec 4
-Each crew member has a different job and so does a type of ships. A pilot can fly a MAV, a mechanic can use a repair ship to repair the main ship, and a commander is responsible for directing the main ship.
+Each crew member has a different job and so does a type of ships. Only a pilot can fly a MAV, only a mechanic can use a repair ship, and only a commander is responsible for directing the main ship.
 
-An object with key value pairs is provided to you as a global variable in this app. The keys correspond to cremMemebers' jobs, and the values correspond to ships' types. A crew member can only perform her job correctly in the right type of ship.
+An object with key value pairs is provided to you as a global variable in this app. The keys correspond to crew members' jobs, and the values correspond to ships' types. A crew member can only perform her job correctly in the right type of ship.
 
 By the way, if a crew member's job is programmer, then she can do her job on any ship, because software programmers are awesome.
 
 ```JavaScript
-var jobAbilities = {
+var jobTypes = {
   pilot: 'MAV',
   mechanic: 'Repair Ship',
   commander: 'Main Ship',
@@ -74,7 +74,9 @@ var jobAbilities = {
 }
 ```
 
+In `Ship` class, write a instance method `missionStatement`: this method will return "Can't perform a mission yet." if none of the ship's crew has the correct job that matches this ship type; and it will return this ship's ability if there is a crew member that has a correct job that matches the ship type.
+
+
 ## Spec 5
-Your job, is to make sure the job <=> type is a match when a crew member is trying to perform a job in a ship.
 
 Make sure all tests pass.
