@@ -93,7 +93,7 @@ describe('Ship', function(){
     assert.equal(mav.crew.length, 0);
   })
 
-  it('can console log out a mission statement correctly', function(){
+  it('can return a mission statement correctly', function(){
     var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
     var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
     var hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
