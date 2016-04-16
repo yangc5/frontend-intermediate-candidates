@@ -9,60 +9,7 @@ var jobTypes = {
   programmer: 'Any Ship!'
 };
 
-function CrewMember(name, job, specialSkill){
-  this.name = name;
-  this.job = job;
-  this.specialSkill = specialSkill;
-  this.ship = null;
-
-  this.enterShip = function(ship){
-    this.ship=ship;
-    ship.crew.push(this);
-  }
-}
-
-function Ship(name, type, ability) {
-  this.name = name;
-  this.type = type;
-  this.ability = ability;
-  this.crew = [];
-
-  this.missionStatement = function(){
-    var statement = "Can't perform a mission yet.";
-    var neededJob = '';
-
-    for (var job in jobTypes) {
-      if(jobTypes[job] === this.type){
-        neededJob = job;
-      }
-    }
-
-    var that = this;
-    this.crew.forEach(function(member){
-      if (member.job === neededJob){
-        statement = that.ability;
-      }
-    });
-
-    return statement;
-
-  }
-}
-
-// var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
-// var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
-// crewMember1.enterShip(mav);
-// mav.missionStatement();
-
-// var mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
-// var crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
-//
-// crewMember1.enterShip(mav);
-// console.log(crewMember1.ship);
-// console.log(mav.crew);
-// console.log(crewMember1.ship === mav);
-// console.log(mav.crew.indexOf(crewMember1) === 0);
-
+// Your code here
 
 //tests
 if (typeof describe !== 'undefined'){
